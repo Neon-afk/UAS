@@ -10,7 +10,7 @@ model_path = 'kmeans_model.pkl'  # Lokasi file model
 kmeans = joblib.load(model_path)
 
 # Menyiapkan scaler yang digunakan pada saat pelatihan model
-scaler_path = '/mnt/data/scaler.pkl'  # Lokasi file scaler (jika ada)
+scaler_path = 'scaler.pkl'  # Lokasi file scaler (jika ada)
 scaler = joblib.load(scaler_path)  # Memuat scaler jika disimpan terpisah
 
 # Fungsi untuk memprediksi kluster berdasarkan input pengguna

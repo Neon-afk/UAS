@@ -10,7 +10,7 @@ model_path = 'kmeans_model.pkl'  # Lokasi file model
 kmeans = joblib.load(model_path)
 
 # Menyiapkan scaler yang digunakan pada saat pelatihan model
-scaler_path = 'scaler.pkl'  # Lokasi file scaler (jika ada)
+scaler_path = '/mnt/data/scaler.pkl'  # Lokasi file scaler (jika ada)
 scaler = joblib.load(scaler_path)  # Memuat scaler jika disimpan terpisah
 
 # Fungsi untuk memprediksi kluster berdasarkan input pengguna
@@ -45,10 +45,22 @@ if st.button("Prediksi Kluster"):
     # Visualisasi kluster
     st.subheader("Visualisasi Kluster")
     # Untuk menampilkan visualisasi, kita memuat data yang ada dan menggambar plot berdasarkan kluster
-    data_clean = pd.read_csv('data/diabetes_risk_dataset.csv')
+    data_clean = pd.read_csv('/content/sample_data/diabetes_risk_dataset.csv')
     data_clean['family_history'] = data_clean['family_history'].astype(int)
     data_clean['smoker'] = data_clean['smoker'].astype(int)
     X = data_clean[['age', 'bmi', 'glucose_level', 'family_history', 'smoker']]
+
+    # Normalisasi data untuk visualisasi
+    X_scaled = scaler.transform(X)
+    data_clean['cluster'] = kmeans.predict(X_scaled)
+
+    plt.figure(figsize=(8, 6))
+    plt.scatter(data_clean['age'], data_clean['bmi'], c=data_clean['cluster'], cmap='viridis')
+    plt.title('Visualisasi Kluster dengan K-Means')
+    plt.xlabel('Age')
+    plt.ylabel('BMI')
+    plt.colorbar(label='Cluster')
+    st.pyplot()
 
     # Menampilkan pusat kluster
     st.subheader("Pusat Kluster")

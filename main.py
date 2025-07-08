@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler
 import joblib  # Untuk memuat model yang disimpan
 
 # Memuat model K-Means yang telah disimpan
-model_path = '/mnt/data/kmeans_model.pkl'  # Lokasi file model
+model_path = 'kmeans_model.pkl'  # Lokasi file model
 kmeans = joblib.load(model_path)
 
 # Menyiapkan scaler yang digunakan pada saat pelatihan model

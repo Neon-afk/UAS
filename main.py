@@ -14,7 +14,7 @@ scaler = joblib.load(scaler_path)  # Memuat scaler jika disimpan terpisah
 # Fungsi untuk memprediksi kluster berdasarkan input pengguna
 def predict_cluster(age, bmi, glucose_level, family_history, smoker, kmeans, scaler):
     input_data = np.array([[age, bmi, glucose_level, family_history, smoker]])
-    
+
     # Normalisasi input pengguna
     input_scaled = scaler.transform(input_data)
     

@@ -45,7 +45,7 @@ if st.button("Prediksi Kluster"):
     # Visualisasi kluster
     st.subheader("Visualisasi Kluster")
     # Untuk menampilkan visualisasi, kita memuat data yang ada dan menggambar plot berdasarkan kluster
-    data_clean = pd.read_csv('/content/sample_data/diabetes_risk_dataset.csv')
+    data_clean = pd.read_csv('data/diabetes_risk_dataset.csv')
     data_clean['family_history'] = data_clean['family_history'].astype(int)
     data_clean['smoker'] = data_clean['smoker'].astype(int)
     X = data_clean[['age', 'bmi', 'glucose_level', 'family_history', 'smoker']]
